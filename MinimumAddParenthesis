@@ -1,0 +1,28 @@
+// https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+// Complexity is O(n)
+
+class Solution {
+    public int minAddToMakeValid(String S) {
+        int result = 0;
+        if(S == null || S.length() == 0) return result;
+        char l = '(';
+        char r = ')';
+        
+        Stack<Character> par = new Stack<>();
+        
+        for(int x = 0; x < S.length(); x++) {
+            if(par.empty()) {
+                par.push(S.charAt(x));
+                continue;
+            }
+            
+            if(S.charAt(x) == r && par.peek() == l) par.pop();
+            else par.push(S.charAt(x));
+        }
+        
+        for(Character c : par)
+            result++;
+        
+        return result;
+    }
+}
