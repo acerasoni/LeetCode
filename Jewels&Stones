@@ -1,7 +1,5 @@
-/*
-Easy - https://leetcode.com/problems/jewels-and-stones/submissions/
-Time complexity is O(n)
-*/
+// https://leetcode.com/problems/jewels-and-stones/submissions/
+// Time complexity is O(n)
 
 class Solution {
     public int numJewelsInStones(String J, String S) {
