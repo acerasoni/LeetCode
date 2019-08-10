@@ -1,7 +1,5 @@
-/* 
-Easy - https://leetcode.com/problems/reverse-integer
-Complexity is O(n)
-*/
+// https://leetcode.com/problems/reverse-integer
+// Complexity is O(n)
 
 class Solution {
     public int reverse(int x) {
