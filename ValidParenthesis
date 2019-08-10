@@ -1,0 +1,41 @@
+/* 
+Easy - https://leetcode.com/problems/valid-parentheses
+Complexity is O(n)
+*/
+
+class Solution {
+    public boolean isValid(String s) {
+       
+        Stack<Character> stack = new Stack<>();
+             if(s.length() == 0)
+            return true;
+        
+        stack.push(s.charAt(0));
+       OUTER: for(int x = 1; x < s.length(); x++) {
+            switch(s.charAt(x)){
+                case ')': 
+                    if(!stack.empty() && stack.peek() == '(') {
+                         stack.pop();
+                        continue OUTER; 
+                    }
+                    break;
+                case ']':
+                    if(!stack.empty() && stack.peek() == '[') {
+                         stack.pop();
+                        continue OUTER; 
+                    }
+                    break;
+                case '}':
+                    if(!stack.empty() && stack.peek() == '{'){
+                         stack.pop();
+                        continue OUTER; 
+                    }
+                    break;
+                    
+            }
+           stack.push(s.charAt(x));
+        }
+        
+        return stack.empty();
+    }
+}
