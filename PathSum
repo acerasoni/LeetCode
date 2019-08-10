@@ -1,0 +1,27 @@
+/*
+Easy - https://leetcode.com/problems/path-sum
+Complexity is O(n)
+*/
+
+class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        List<Integer> paths = new ArrayList<>();
+        int curr = 0;
+        
+        sumRootToLeaf(root, curr, sum, paths);
+        return (paths.size() > 0);
+    }
+    
+    public void sumRootToLeaf(TreeNode root, int curr, int sum, List<Integer> list) {
+        if(root == null) return;
+        
+        if(root.left == null & root.right == null) {
+            if(root.val + curr == sum) list.add(root.val+curr);
+        }
+        else {
+            sumRootToLeaf(root.left, curr+root.val, sum, list);
+            sumRootToLeaf(root.right, curr+root.val, sum, list);
+        }
+    }
+    
+}
