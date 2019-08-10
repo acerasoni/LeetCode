@@ -1,0 +1,70 @@
+// https://leetcode.com/problems/add-two-numbers
+// Complexity is O(n)
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int remainder = 0;
+        ListNode curr1 = l1;
+        ListNode curr2 = l2;
+        ListNode result, currResult;
+        
+        int firstValue = l1.val + l2.val;
+        if(firstValue >= 10) {
+            result = new ListNode(firstValue % 10);
+            remainder = 1;
+        } else result = new ListNode(l1.val + l2.val);
+
+        currResult = result;
+        
+        while(l1.next != null && l2.next != null){
+            l1 = l1.next;
+            l2 = l2.next;
+            firstValue = l1.val + l2.val + remainder;
+            if(firstValue >= 10) {
+             currResult.next = new ListNode(firstValue % 10);
+             remainder = 1;
+         } else{
+                currResult.next = new ListNode(l1.val + l2.val + remainder);
+                remainder = 0;
+            } 
+            
+            currResult = currResult.next;
+        }
+
+        while(l1.next != null){
+            l1 = l1.next;
+            firstValue = l1.val + remainder;
+             if(firstValue >= 10) {
+             currResult.next = new ListNode(firstValue % 10);
+             remainder = 1;
+             } else {
+                currResult.next = new ListNode(firstValue);
+                 remainder = 0;
+             }
+             currResult = currResult.next;
+             currResult.next = l1.next;
+          
+        } 
+        
+        while(l2.next != null){
+             l2 = l2.next;
+            firstValue = l2.val + remainder;
+             if(firstValue >= 10) {
+             currResult.next = new ListNode(firstValue % 10);
+             remainder = 1;
+             } else {
+                currResult.next = new ListNode(firstValue);
+                 remainder = 0;
+             }
+             currResult = currResult.next;
+             currResult.next = l2.next;
+        } 
+              
+      if(remainder == 1){
+            currResult.next = new ListNode(1);
+            currResult = currResult.next;
+        }
+        
+        return result;
+    }
+}
