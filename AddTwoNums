@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/add-two-numbers
-// Complexity is O(n)
+// Complexity is O(max(l1,l2))
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
