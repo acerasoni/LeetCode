@@ -1,7 +1,5 @@
-/*
-Easy - https://leetcode.com/problems/remove-outermost-parentheses
-Complexity is O(n)
-*/
+// https://leetcode.com/problems/remove-outermost-parentheses
+// Complexity is O(n)
 
 class Solution {
     public String removeOuterParentheses(String S) {
