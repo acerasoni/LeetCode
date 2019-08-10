@@ -1,7 +1,5 @@
-/* 
-Easy  https://leetcode.com/problems/palindrome-number
-Complexity is O(n)
-*/
+// https://leetcode.com/problems/palindrome-number
+// Complexity is O(n)
 
 class Solution {
     public boolean isPalindrome(int x) {
