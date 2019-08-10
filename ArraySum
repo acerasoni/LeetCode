@@ -1,7 +1,6 @@
-/*
-Easy - https://www.hackerrank.com/challenges/simple-array-sum/problem
-Complexity o(n)
-*/
+// https://www.hackerrank.com/challenges/simple-array-sum/problem
+// Complexity o(n)
+
 public class Solution{ 
 
    static int simpleArraySum(int[] ar) {
