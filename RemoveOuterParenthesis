@@ -1,0 +1,30 @@
+/*
+Easy - https://leetcode.com/problems/remove-outermost-parentheses
+Complexity is O(n)
+*/
+
+class Solution {
+    public String removeOuterParentheses(String S) {
+        StringBuilder current = new StringBuilder();
+        StringBuilder dec = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+        
+        stack.push(S.charAt(0));
+        
+        for(int i = 1; i < S.length(); i++) {
+            if(!stack.empty()) current.append(S.charAt(i));
+ 
+            if(stack.empty() || S.charAt(i) == stack.peek()) stack.push(S.charAt(i));
+            else if(stack.size() == 1) {
+                stack.pop();
+                current.deleteCharAt(current.length()-1);
+                dec.append(current.toString());
+                current = new StringBuilder();
+            }
+            else stack.pop();
+        }
+        
+        if(current.length() != 0) dec.append(current.toString());
+        return dec.toString();
+    }
+}
