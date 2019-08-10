@@ -1,7 +1,5 @@
-/*
-Easy - https://leetcode.com/problems/two-sum/
-Complexity O(n^2)
-*/
+// https://leetcode.com/problems/two-sum/
+// Complexity O(n^2)
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
