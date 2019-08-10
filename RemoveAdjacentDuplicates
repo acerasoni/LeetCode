@@ -1,0 +1,25 @@
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string
+// Complexity is O(n)
+
+class Solution {
+    public String removeDuplicates(String S) {
+        Stack<Character> stack = new Stack<>();
+        StringBuilder result = new StringBuilder();
+        
+      
+        for(int x = 0; x < S.length(); x++) {
+            if(stack.size() > 0){
+                  if(stack.peek() == S.charAt(x)) stack.pop(); 
+                  else stack.push(S.charAt(x)); 
+            } else stack.push(S.charAt(x)); 
+           
+        }
+        
+        for(Character c : stack) {
+          result.append(c);  
+        }
+        return result.toString();
+       
+        
+    }
+}
