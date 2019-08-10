@@ -1,0 +1,42 @@
+// https://leetcode.com/problems/uncommon-words-from-two-sentences
+// Complexity is O(n)
+
+class Solution {
+    public String[] uncommonFromSentences(String A, String B) {
+        Set<String> uncommon = new HashSet<>();
+        Set<String> common = new HashSet<>();
+        String[] a, b, c;
+        
+        a = A.split(" ");
+        b = B.split(" ");
+        
+        for(int x = 0; x < a.length; x++) {
+            if(!common.contains(a[x])) {
+                 if(!uncommon.contains(a[x])) uncommon.add(a[x]);
+            else {
+                common.add(a[x]);
+                uncommon.remove(a[x]);
+             }
+            }
+           
+        }
+        
+        for(int y = 0; y < b.length; y++) {
+                if(!common.contains(b[y])) {
+                 if(!uncommon.contains(b[y])) uncommon.add(b[y]);
+            else {
+                common.add(b[y]);
+                uncommon.remove(b[y]);
+             }
+            }
+        } 
+        c = new String[uncommon.size()];
+        int idx = 0;
+        for(String s : uncommon) {
+            c[idx] = s;
+            idx++;
+        }
+        
+        return c;
+    }
+}
