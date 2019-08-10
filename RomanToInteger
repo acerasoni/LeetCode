@@ -1,0 +1,45 @@
+/* 
+Easy - https://leetcode.com/problems/roman-to-integer/
+Complexity O(n)
+*/
+
+class Solution {
+    public int romanToInt(String s) {
+        int result = 0;
+        char current = '0';
+        
+        for(int i = 0; i < s.length(); i++)
+        {
+            
+           switch(s.charAt(i)) {
+               case 'I': result++; break;
+               case 'V': 
+                   if(current == 'I') result+= 3; 
+                   else result+= 5;
+                   break;
+               case 'X':  
+                   if(current == 'I') result+= 8; 
+                   else result+= 10;
+                   break;
+               case 'L':   
+                   if(current == 'X') result+= 30; 
+                   else result+= 50;
+                   break;
+               case 'C':   
+                   if(current == 'X') result+= 80; 
+                   else result+= 100;
+                   break;
+               case 'D':   
+                   if(current == 'C') result+= 300; 
+                   else result+= 500;
+                   break;
+               case 'M':   
+                   if(current == 'C') result+= 800; 
+                   else result+= 1000;
+                   break;
+           }
+            current = s.charAt(i);
+            }
+        return result;
+    }
+}
