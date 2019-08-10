@@ -1,0 +1,22 @@
+/* 
+Easy  https://leetcode.com/problems/palindrome-number
+Complexity is O(n)
+*/
+
+class Solution {
+    public boolean isPalindrome(int x) {
+      StringBuilder s = new StringBuilder(Integer.toString(Math.abs(x)));
+      StringBuilder result = new StringBuilder();
+      
+           if(x<0)
+            return false;
+        
+          for(int y = s.length()-1; y >= 0; y--) {
+            result.append(s.charAt(y));
+        }
+        
+        if(Long.parseLong(result.toString()) == x) return true;
+        
+        return false;
+  }
+}
