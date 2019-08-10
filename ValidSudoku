@@ -1,0 +1,52 @@
+// https://leetcode.com/problems/valid-sudoku
+// Complexity is O(mn) where m = rows and n = columns (both 9 in the case of sudoku) hence functionally equivalent to O(n^2)
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Set<Character> currRow = new HashSet<>();
+        Set<Character> currColumn = new HashSet<>();
+        Set<Character> currGrid = new HashSet<>();
+        int xCounter = 0, yCounter = 0;
+        int xBase = 0, yBase = 0;
+        char currX, currY, currG;
+        
+        for(int i = 0; i < 9; i++){
+            for(int x = 0; x < 9; x++){
+            currX = board[x][i];
+           // CHECK IF EXISTS IN ROW
+            if(currRow.contains(currX)) return false;
+            if(currX != '.') currRow.add(currX);
+          
+            currY = board[i][x];
+           // CHECK IF EXISTS IN COLUMN
+            if(currColumn.contains(board[i][x])) return false;
+            if(currY != '.') currColumn.add(currY);
+            
+            currG = board[xCounter][yCounter];
+            // CHECK IF EXISTS IN GRID
+            if(currGrid.contains(currG)) return false;   
+            if(currG != '.') currGrid.add(currG);
+            
+            if(xCounter == xBase+2) {
+                xCounter = xBase;
+                yCounter++;
+               
+            }
+            else xCounter++; 
+            }
+            currRow.clear();
+            currColumn.clear();
+            currGrid.clear();
+             
+            if(xBase == 6){
+                xBase = 0;
+                yBase += 3;
+            } else xBase += 3;
+            
+             xCounter = xBase;
+             yCounter = yBase;
+        }
+        
+        return true;
+    }
+}
