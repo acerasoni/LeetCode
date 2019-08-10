@@ -1,7 +1,5 @@
-/* 
-Easy - https://leetcode.com/problems/roman-to-integer/
-Complexity O(n)
-*/
+// https://leetcode.com/problems/roman-to-integer/
+// Complexity O(n)
 
 class Solution {
     public int romanToInt(String s) {
