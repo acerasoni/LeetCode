@@ -1,0 +1,32 @@
+// https://leetcode.com/problems/integer-replacement
+// Complexity is O(logn)
+
+class Solution {
+    public int integerReplacement(int n) {
+        Stack<Integer> min = new Stack<>();
+        min.push(Integer.MAX_VALUE);
+        
+        count((long) n, 0, min); 
+        return min.peek();
+    }
+    
+    private void count(long n, int result, Stack<Integer> min) {
+        if(result > min.peek()) return;
+        int r = result;  
+      
+        if(n == 1) { 
+           if(result < min.peek()) {
+               min.pop(); 
+               min.push(result);
+           }
+           return;
+        } 
+        
+        if(n % 2 == 0) {
+            count((long) n/2, ++result, min);
+        } else {
+            count(n+1, ++result, min);
+            count(n-1, ++r, min);
+        }
+    }
+}
