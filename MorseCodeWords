@@ -1,7 +1,5 @@
-/* 
-Easy - https://leetcode.com/problems/unique-morse-code-words
-Complexity is O(nx) where n = words.length and x = words[i].length
-*/
+// https://leetcode.com/problems/unique-morse-code-words
+// Complexity is O(nx) where n = words.length and x = words[i].length
 
 class Solution {
     public int uniqueMorseRepresentations(String[] words) {
