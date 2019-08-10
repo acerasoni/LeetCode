@@ -1,0 +1,24 @@
+// https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree
+// Complexity is O(n)
+
+class Solution {
+    public TreeNode bstToGst(TreeNode root) {
+        LinkedList<TreeNode> list = new LinkedList<>();
+        changeNode(root, list);
+        int count = 0;
+
+        for(TreeNode i : list) {
+            i.val = i.val + count;
+            count = i.val;
+        }
+        return root;
+    }
+    
+    private void changeNode(TreeNode node, LinkedList<TreeNode> list) {
+        if(node == null) return;
+        
+         changeNode(node.right, list);  
+         list.add(node);
+         changeNode(node.left, list);
+    }
+}
