@@ -1,0 +1,18 @@
+// https://leetcode.com/problems/single-number
+// Complexity is O(n)
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        Map<Integer, Integer> occ = new HashMap<>();
+        
+        for(int x = 0; x < nums.length; x++) {
+            if(occ.get(nums[x]) == null)  occ.put(nums[x], 1);
+            else occ.put(nums[x], occ.get(nums[x]) + 1);
+        }
+        
+        for(Integer i : occ.keySet()) {
+            if(occ.get(i) == 1) return i;
+        }
+        return 0;
+    }
+}
