@@ -1,7 +1,5 @@
-/*
-Easy - https://leetcode.com/problems/implement-strstr/
-Complexity is O(nx) where n = haystack.length() and x = needle.length()
-*/
+// https://leetcode.com/problems/implement-strstr/
+// Complexity is O(nx) where n = haystack.length() and x = needle.length()
 
 class Solution {
     public int strStr(String haystack, String needle) {
