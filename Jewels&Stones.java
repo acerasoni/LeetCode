@@ -9,7 +9,6 @@ class Solution {
         int jeCount = 0;
         Set<Character> chars = new HashSet<>();
         
-
         for(int x = 0; x < S.length(); x++) {
                 if(chars.contains(S.charAt(x))) result++;
                 else if(jeCount < J.length() && S.charAt(x) == J.charAt(jeCount)){
@@ -18,7 +17,6 @@ class Solution {
                     chars.add(S.charAt(x));
                 }
         }
-        
         return result;
     }
 }
