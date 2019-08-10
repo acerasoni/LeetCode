@@ -1,7 +1,5 @@
-/*
-Easy - https://leetcode.com/problems/defanging-an-ip-address
-Complexity is O(n)
-*/
+// https://leetcode.com/problems/defanging-an-ip-address
+// Complexity is O(n)
 
 class Solution {
     public String defangIPaddr(String address) {
