@@ -1,0 +1,15 @@
+/*
+Easy - https://www.hackerrank.com/challenges/simple-array-sum/problem
+Complexity o(n)
+*/
+public class Solution{ 
+
+   static int simpleArraySum(int[] ar) {
+         return sum(ar, 0);
+    }
+    
+    private static int sum(int[] arr, int idx) {
+        if(idx == arr.length-1) return arr[idx];
+        else return arr[idx] + sum(arr, ++idx);
+    }
+}
