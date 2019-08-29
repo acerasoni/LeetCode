@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/set-matrix-zeroes/submissions/
+// Solution is O(M*N) with space O(M+N)
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return;
+        
+        Set<Integer> rows = new HashSet<>();
+        Set<Integer> cols = new HashSet<>();
+        
+        for(int m = 0; m < matrix.length; m++) {
+          for(int n = 0; n < matrix[m].length; n++) {
+            if(matrix[m][n] == 0) {
+                rows.add(m);
+                cols.add(n);
+            }
+          }   
+        }
+        
+         for(int m = 0; m < matrix.length; m++) {
+          for(int n = 0; n < matrix[m].length; n++) {
+            if(rows.contains(m) || cols.contains(n)) matrix[m][n] = 0;
+          }   
+        }
+    }
+}
