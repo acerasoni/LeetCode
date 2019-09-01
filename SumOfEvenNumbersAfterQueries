@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/sum-of-even-numbers-after-queries/
+// Solution is O(m+n) where m = A.length and n is number of queries
+
+class Solution {
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+       int[] res = new int[queries.length];
+        
+       // current sum of even numbers
+       int current = 0;
+        
+        for(int i = 0; i < A.length; i++) {
+            if(A[i] % 2 == 0) current += A[i];
+        }
+        
+        for(int x = 0; x < queries.length; x++) {
+            if(A[queries[x][1]] % 2 == 0) current -= A[queries[x][1]];
+            
+            A[queries[x][1]] += queries[x][0];
+            if(A[queries[x][1]] % 2 == 0) current += A[queries[x][1]];
+        
+            res[x] = current;
+        }
+        
+        return res;
+    }
+}
