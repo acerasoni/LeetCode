@@ -1,0 +1,102 @@
+/*
+/ Solution to validate if a tree is a Binary Search Tree
+/ Question taken from Cracking The Coding Interview 6th Edition by Gayle Laakmann McDowell
+/ Solution is implemented recursive and has runtime of O(N) and space of O(N)
+*/
+
+import java.util.ArrayList;
+
+public class BST {
+
+    static class Node {
+        int idx;
+        Node left, right;
+
+        public Node(int idx) {
+            this.idx = idx;
+        }
+
+        public void setLeft(Node left) {
+            this.left = left;
+        }
+
+        public void setRight(Node right) {
+            this.right = right;
+        }
+
+        public void clearLR() {
+            left = null;
+            right = null;
+        }
+    }
+
+    public static boolean validateBST(Node root) {
+        if (root == null)
+            return true;
+
+        if (root.left != null)
+            if (root.left.idx > root.idx)
+                return false;
+
+        if (root.right != null)
+            if (root.right.idx < root.idx)
+                return false;
+
+        if (validateBST(root.left) && validateBST(root.right))
+            return true;
+
+        return false;
+    }
+
+    public static void main(String... args) {
+
+        Node one = new Node(1);
+        Node two = new Node(2);
+        Node three = new Node(3);
+        Node four = new Node(4);
+        Node five = new Node(5);
+        Node six = new Node(6);
+        Node seven = new Node(7);
+
+        ArrayList<Node> nodes = new ArrayList<Node>() {
+            private static final long serialVersionUID = 1L;
+
+            {
+                add(one);
+                add(two);
+                add(three);
+                add(four);
+                add(five);
+                add(six);
+                add(seven);
+            }
+        };
+
+        // NOT VALID BST
+        one.setLeft(two);
+        one.setRight(five);
+
+        two.setLeft(three);
+        two.setRight(four);
+
+        five.setLeft(six);
+        five.setRight(seven);
+
+        System.out.println(validateBST(one));
+
+        // CLEAR NODES
+        for(Node n : nodes) n.clearLR();
+
+        // VALID BST
+        four.setLeft(two);
+        four.setRight(six);
+
+        two.setLeft(one);
+        two.setRight(three);
+
+        six.setLeft(five);
+        six.setRight(seven);
+
+        System.out.println(validateBST(four));
+    }
+}
