@@ -1,0 +1,43 @@
+/* Runtime is O(n+m) where n = size of a and m = number of unique chars in a
+/  In the case m == n (string contains no duplicates), runtime results in O(2n) which simplifies to O(n)
+/  Else m is strictly less than n hence is non-dominant and can be dropped. O(n+m) -> O(n)
+*/
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+    public static void main(String...args) {
+                System.out.println(compression("abbbbb"));
+        
+    }
+
+    public static String compression(String a) {
+        if(a == null || a.length() == 0) return a;
+
+        Map<Character, Integer> m = new HashMap<>();
+        StringBuilder result = new StringBuilder();
+        int size = 0;
+        char curr;
+
+        for(int x = 0; x < a.length(); x++) {
+            curr = a.charAt(x);
+            if(m.get(curr) == null) {
+                size += 2;
+                if(size >= a.length()) {
+                    return a;
+                }
+                m.put(curr, 1);
+            } else {
+                m.put(curr, m.get(curr) + 1);
+            }
+        }
+
+        for(Character c : m.keySet()) {
+            result.append(c + Integer.toString(m.get(c)));
+        }
+
+        return result.toString();
+    }
+}
