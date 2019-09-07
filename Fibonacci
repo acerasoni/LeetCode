@@ -1,0 +1,40 @@
+/* 
+/ My two solutions to the LeetCode question https://leetcode.com/problems/fibonacci-number/submissions/
+*/
+
+class Fibonacci {
+    
+    public int fibBottomUp(int N) {
+        if(N == 0) return 0;
+        if(N == 1) return 1;
+        
+        // INDEX REPRESENTS FIB ENTRY
+        int[] fibEntries = new int[N+1];
+        fibEntries[0] = 0;
+        fibEntries[1] = 1;
+        
+        for(int x = 2; x <= N; x++) {
+            fibEntries[x] = fibEntries[x-1] + fibEntries[x-2];
+        }
+        
+        return fibEntries[N];
+    }
+    
+    public int fibMemoization(int N) {
+        Map<Integer, Integer> known = new HashMap<>();
+        known.put(0, 0);
+        known.put(1, 1);
+        
+        return calcFib(N, known);
+    }
+    
+    public int calcFib(int N, Map<Integer, Integer> known) {
+        if(known.get(N) == null) {
+            int fib = calcFib(N-1, known) + calcFib(N-2, known);
+            known.put(N, fib);
+            return fib;
+        } else {
+            return known.get(N);
+        }
+    } 
+}
