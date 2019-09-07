@@ -6,7 +6,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class BST {
+public class VowelsInString {
 
     public static int vowels(String s) {
         int res = 0;
