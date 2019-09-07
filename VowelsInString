@@ -1,0 +1,33 @@
+/*
+/ Count the number of vowels in a String. Question originally taken from https://www.hackerearth.com/
+/ Runtime is O(n) with space O(1)
+*/
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class BST {
+
+    public static int vowels(String s) {
+        int res = 0;
+        
+        Set<Character> vowels = new HashSet<Character>() {
+            private static final long serialVersionUID = 1L;
+            {
+                add('a');
+                add('e');
+                add('i');
+                add('o');
+                add('u');
+            }
+        };
+       
+        for(int x = 0; x < s.length(); x++) if(vowels.contains(s.charAt(x))) res++;
+        return res;
+    }
+
+    public static void main(String... args) {
+            System.out.println(vowels("aeiou"));
+            System.out.println(vowels("hello"));
+    }
+}
