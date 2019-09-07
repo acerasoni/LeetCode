@@ -1,0 +1,35 @@
+// Insert binary integer M into binary integer N from position j to i
+// Question taken from Cracking The Coding Interview 6th Edition by Gayle Laakmann McDowell
+// Runtime is O(j-i);
+
+public class InsertBit {
+
+    public static boolean getBit(int num, int bit) {
+        return (num & (1 << bit)) != 0;
+    }
+
+    public static int setBit(int num, int bit) {
+        return num | (1 << bit);
+    }
+
+    public static int clearBit(int num, int bit) {
+        return (num & ~(1 << bit));
+    }
+
+    public static int updateBit(int num, int bit, boolean isOne) {
+        return isOne ? setBit(num, bit) : clearBit(num, bit);
+    }
+
+    public static int insert(int N, int M, int i, int j) {
+        M = M << i;
+        for (int x = i; x < j + 1; x++)
+            N = updateBit(N, x, getBit(M, x));
+
+        return N;
+    }
+
+    public static void main(String... args) {
+        System.out.println(Integer.toBinaryString(insert(0b10001111101, 0b10011, 2, 6)));
+        System.out.println(Integer.toBinaryString(insert(0b10000000000, 0b10011, 2, 6)));
+    }
+}
