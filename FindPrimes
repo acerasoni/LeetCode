@@ -1,0 +1,39 @@
+/*
+/ Simple program to check for primality of an integer 
+/ The first naive method has runtime of O(n)
+/ The second method takes advantage of the Fundamental Principle of Arithmetic 
+/ Hence iterates from 2..sqrt(n) and has worst case runtime of O(sqrt(n))
+*/
+
+public class PrimeNumbers {
+
+    public static boolean primeNaive(int prime) {
+        for (int x = 2; x < prime; x++)
+            if (prime % x == 0)
+                return false;
+
+        return true;
+    }
+
+    public static boolean primeSqrt(int prime) {
+        double sqrt = Math.sqrt(prime);
+
+        for (int x = 2; x < sqrt; x++)
+            if (prime % x == 0)
+                return false;
+
+        return true;
+    }
+
+    public static void main(String... args) {
+        System.out.println(primeNaive(7));
+        System.out.println(primeNaive(17));
+        System.out.println(primeNaive(11));
+        System.out.println(primeNaive(16));
+
+        System.out.println(primeSqrt(7));
+        System.out.println(primeSqrt(17));
+        System.out.println(primeSqrt(11));
+        System.out.println(primeSqrt(16));
+    }
+}
