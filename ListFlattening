@@ -1,0 +1,103 @@
+// My personal solution to problem 'Flatten multiple doubly linked lists connected by a child node into a single doubly linked list'
+// Question taken from Programming Interviews Exposed, 4th edition
+
+public class Flatten {
+    static class ListNode {
+        ListNode next, prev, child;
+        int data;
+
+        public ListNode(int data) {
+            this.data = data;
+        }
+
+        public void setNext(ListNode next) {
+            this.next = next;
+        }
+
+        public void setPrevious(ListNode prev) {
+            this.prev = prev;
+        }
+
+        public void setChild(ListNode child) {
+            this.child = child;
+        }
+    }
+
+    public static ListNode flatten(ListNode head, ListNode tail) {
+        if (head == null)
+            return tail;
+
+        if (head.child != null) {
+            tail.next = head.child;
+            head.child.prev = tail;
+            while (tail.next != null)
+                tail = tail.next;
+        }
+
+        return flatten(head.next, tail);
+    }
+
+    public static void main(String... args) {
+        ListNode head = new ListNode(5);
+
+        ListNode a = new ListNode(33);
+        ListNode b = new ListNode(17);
+        ListNode c = new ListNode(2);
+
+        ListNode tail = new ListNode(1);
+        
+        ListNode e = new ListNode(6);
+        ListNode f = new ListNode(25);
+        ListNode g = new ListNode(6);
+        ListNode h = new ListNode(2);
+        ListNode i = new ListNode(7);
+        ListNode j = new ListNode(8);
+        ListNode k = new ListNode(9);
+        ListNode l = new ListNode(12);
+        ListNode m = new ListNode(5);
+        ListNode n = new ListNode(7);
+        ListNode o = new ListNode(21);
+        ListNode p = new ListNode(3);
+
+        head.next = a;
+        a.prev = head;
+        a.next = b;
+        b.prev = a;
+        b.next = c;
+        c.prev = b;
+        c.next = tail;
+        tail.prev = c;
+        e.next = f;
+        f.prev = e;
+        f.next = g;
+        g.prev = f;
+        h.next = i;
+        i.prev = h;
+        l.next = m;
+        m.prev = l;
+        o.next = p;
+        p.prev = o;
+
+        head.child = e;
+        c.child = h;
+        f.child = j;
+        g.child = k;
+        h.child = l;
+        k.child = n;
+        l.child = o;
+
+        tail = flatten(head, tail);
+
+        // PRINT HEAD TO TAIL
+        while (head != null) {
+            System.out.println(head.data);
+            head = head.next;
+        }
+
+        // PRINT BACK TO FRONT
+        while (tail != null) {
+            System.out.println(tail.data);
+            tail = tail.prev;
+        }
+    }
+}
