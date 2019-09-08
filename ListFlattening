@@ -1,5 +1,6 @@
 // My personal solution to problem 'Flatten multiple doubly linked lists connected by a child node into a single doubly linked list'
 // Question taken from Programming Interviews Exposed, 4th edition
+// Runtime is O(n)
 
 public class Flatten {
     static class ListNode {
