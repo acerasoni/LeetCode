@@ -1,0 +1,59 @@
+// My solution to the problem 'Given a singly linked list, determine if it contains a cycle without modifying the list's contents'
+// Question taken from Elements of Programming Interviews, 4th Edition
+// Solution is O(n) runtime and O(n) space
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class NullOrCycle {
+    static class ListNode {
+        ListNode next;
+        int data;
+
+        public ListNode(int data) {
+            this.data = data;
+        }
+
+        public void setNext(ListNode next) {
+            this.next = next;
+        }
+
+    }
+
+    public static boolean nullOrCycle(ListNode head) {
+        Set<ListNode> visited = new HashSet<>();
+        return nOrC(head, visited);
+    }
+
+    private static boolean nOrC(ListNode head, Set<ListNode> visited) {
+            if(head == null) return true;
+            if(visited.contains(head)) return false;
+            else {
+                visited.add(head);
+                return nOrC(head.next, visited);
+            }
+    }
+
+    public static void main(String... args) {
+        ListNode a = new ListNode(3);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(4);
+        ListNode d = new ListNode(6);
+        ListNode e = new ListNode(2);
+        ListNode head = a;
+
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
+
+        // ACYCLIC
+        System.out.println("List is acyclic: " + nullOrCycle(head));
+
+        e.next = c;
+
+        // CYCLIC
+        System.out.println("List is acyclic: " + nullOrCycle(head));
+    }
+
+}
