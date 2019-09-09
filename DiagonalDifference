@@ -20,6 +20,3 @@ public static int diagonalDifference(List<List<Integer>> arr) {
     
     return Math.abs(diagonalOne - diagonalTwo);
     }
-
-
-}
