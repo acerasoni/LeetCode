@@ -1,0 +1,25 @@
+// https://www.hackerrank.com/challenges/diagonal-difference
+// Runtime is O(n^2) where n is num of rows/columns, of alternatively O(m) where m is the size of the matrix
+// Space is O(1)
+
+public static int diagonalDifference(List<List<Integer>> arr) {
+        if(arr == null) return 0;
+        if(arr.size() == 1) return 0;
+
+        int diagonalOne = 0;
+        int diagonalTwo = 0;
+        int reverseCounter = arr.size()-1;
+
+        for(int x = 0; x < arr.size(); x++) {
+            for(int y = 0; y < arr.size(); y++) {
+                if(x == y) diagonalOne += arr.get(x).get(y);
+                if(y == reverseCounter) diagonalTwo += arr.get(x).get(y);
+            }
+            reverseCounter --;
+        }
+    
+    return Math.abs(diagonalOne - diagonalTwo);
+    }
+
+
+}
