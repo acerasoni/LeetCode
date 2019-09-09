@@ -1,0 +1,42 @@
+// Solution to the problem 
+// 'I can jump 1, 2 or 3 steps at once. Return the number of ways I can jump to the top given a staircase of N steps'
+// Question taken from Cracking The Coding Interiew 6th Edition by Gayle Laakmann McDowell
+// Solution is recursive and utilises memoization
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StairJumps {
+
+    static Map<Integer, Integer> possible = new HashMap<>();
+
+    public static int stairJumps(int numSteps) {   
+        if(numSteps < 0) return 0;
+        if(numSteps == 0) {
+            return 1;
+        } 
+        if(possible.get(numSteps) != null) return possible.get(numSteps); 
+
+        int curr1;
+        curr1 = stairJumps(numSteps-1);
+        possible.put(numSteps-1, curr1);
+
+        int curr2;
+        curr2 = stairJumps(numSteps-2);
+        possible.put(numSteps-2, curr2);
+
+        int curr3;
+        curr3 = stairJumps(numSteps-3);
+        possible.put(numSteps-3, curr3);
+        return curr1 + curr2 + curr3;
+    }
+
+    public static int jumps(int numSteps) {
+        return stairJumps(numSteps);
+    }
+
+    public static void main(String... args) {
+        System.out.println(jumps(12));
+    }
+    
+}
