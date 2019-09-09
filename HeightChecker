@@ -1,0 +1,17 @@
+// https://leetcode.com/problems/height-checker
+// O(n) time and O(n) space
+
+class Solution {
+    public int heightChecker(int[] heights) {
+        int result = 0;
+        int[] sorted = heights.clone();
+        
+        Arrays.sort(heights);
+        
+        for(int x = 0; x < heights.length; x++) {
+            if(sorted[x] != heights[x]) result++;
+        }
+        
+        return result;
+    }
+}
