@@ -1,0 +1,33 @@
+// https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
+// Algorithm approach used = sliding window
+
+class Solution {
+    public boolean isValid(String S) {
+        if(S.length() % 3 != 0) return false;
+         S = prune(S, 0, 0);
+       return (S.length() == 0 || S.equals("abc")) ? true : false;
+    }
+    
+    private String prune(String S, int high, int low) {
+         StringBuilder sb = new StringBuilder();
+        StringBuilder buffer = new StringBuilder(S);
+        
+        while(high < buffer.length() && low < buffer.length()) {
+            if(buffer.length() == 0) break;
+            if(sb.length() < 3) {
+                sb.append(buffer.charAt(high));
+                high++;
+            } else if(sb.toString().equals("abc")) {
+                sb = sb.delete(0, sb.length());
+                buffer = buffer.delete(low, high);
+                low = 0;
+                high = 0;
+            } else {
+                    low++;
+                    sb.delete(0, 1);
+                }
+        }
+      
+        return buffer.toString();
+    }
+}
