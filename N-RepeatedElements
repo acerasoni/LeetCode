@@ -1,0 +1,23 @@
+// https://leetcode.com/problems/n-repeated-element-in-size-2n-array/submissions/
+// Runtime O(n)
+
+class Solution {
+    public int repeatedNTimes(int[] A) {
+        if(A == null) return 0;
+        
+        int N = A.length/2;
+        Map<Integer, Integer> occurrences = new HashMap<>();
+        
+        for(int x = 0; x < A.length; x++) {
+            if(occurrences.get(A[x]) == null) {
+                occurrences.put(A[x], 1);
+            } else {
+                occurrences.put(A[x], occurrences.get(A[x])+1);
+            }
+        
+            if(occurrences.get(A[x]) == N) return A[x];
+        }
+        
+        return -1;
+    }
+}
