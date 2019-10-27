@@ -1,0 +1,54 @@
+// https://leetcode.com/problems/3sum-closest/submissions/
+
+class Solution {
+    
+    boolean[] used;
+    int minSum = Integer.MAX_VALUE;
+    int minDifference, currDifference;
+    
+    public int threeSumClosest(int[] nums, int target) {
+        if(nums == null || nums.length == 0) return 0;
+        used = new boolean[nums.length];
+        permute(0, 0, target, nums);
+        
+        return minSum;
+    }
+    
+    private void permute(int numbersUsed, int currSum, int target, int[] nums) {
+        if(numbersUsed == 3) {
+            if(currSum == target) {
+             minSum = target;
+                return;
+            }
+            if(currSum == minSum) return;
+            if(minSum == Integer.MAX_VALUE) {
+                minSum = currSum;
+                minDifference = difference(target, minSum);
+                return;
+            }
+            
+            currDifference = difference(target, currSum);
+            if(currDifference < minDifference){  
+            minSum = currSum;
+            minDifference = currDifference;
+            }
+           return;
+        }
+        
+        for(int i = 0; i < nums.length; i++){
+            if(used[i]) continue;
+            used[i] = true;
+            currSum += nums[i]; 
+            permute(++numbersUsed, currSum, target, nums);
+            numbersUsed--;
+            currSum -= nums[i];
+            used[i] = false;
+        }
+        
+    }
+    
+    private int difference(int target, int sum) {
+        if(target > 0 && sum > 0 || target < 0 && sum < 0)  return Math.abs(Math.abs(sum) - Math.abs(target));
+        else return Math.abs(target) + Math.abs(sum);
+    }
+}
